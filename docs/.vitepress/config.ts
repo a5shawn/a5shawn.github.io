@@ -9,7 +9,7 @@ export default defineConfig({
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   cleanUrls: true,
   lastUpdated: true,
-  outDir: "../dist",
+  outDir: "dist",
 
   // https://vitepress.dev/reference/default-theme-config
   themeConfig: {
