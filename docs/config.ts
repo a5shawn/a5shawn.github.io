@@ -1,3 +1,9 @@
+import { getSidebarItems } from "./utils";
+
+/**
+ * 模块配置
+ * 注意：模块key和link保持一致，方便后续使用模块key生成链接路径
+ */
 const modules = {
   home: { text: "首页", link: "/" },
   notes: { text: "学习笔记", link: "/notes" },
@@ -6,101 +12,58 @@ const modules = {
   readme: { text: "关于我", link: "/readme" },
 };
 
+/**
+ * 学习笔记侧边栏配置
+ */
 export const noteSidebar = [
   {
     text: "前端",
-    items: [
-      {
-        text: "HTML",
-        link: `${modules.notes.link}/frontend/html`,
-      },
-      {
-        text: "CSS",
-        link: `${modules.notes.link}/frontend/css`,
-      },
-      {
-        text: "JavaScript",
-        link: `${modules.notes.link}/frontend/javascript`,
-      },
-      {
-        text: "TypeScript",
-        link: `${modules.notes.link}/frontend/typescript`,
-      },
-      {
-        text: "Vue",
-        link: `${modules.notes.link}/frontend/vue`,
-      },
-      {
-        text: "React",
-        link: `${modules.notes.link}/frontend/react`,
-      },
-      {
-        text: "Webpack",
-        link: `${modules.notes.link}/frontend/webpack`,
-      },
-      {
-        text: "Canvas",
-        link: `${modules.notes.link}/frontend/canvas`,
-      },
-    ],
+    items: getSidebarItems("notes", "frontend", [
+      { text: "HTML" },
+      { text: "CSS" },
+      { text: "JavaScript" },
+      { text: "TypeScript" },
+      { text: "Vue" },
+      { text: "React" },
+      { text: "Webpack" },
+      { text: "Canvas" },
+    ]),
   },
   {
     text: "后端",
-    items: [
-      {
-        text: "MySQL 必知必会",
-        link: `${modules.notes.link}/backend/mysql-crash-course`,
-      },
-    ],
+    items: getSidebarItems("notes", "backend", [
+      { text: "MySQL 必知必会", link: "mysql-crash-course" },
+    ]),
   },
   {
     text: "工程化",
-    items: [
-      {
-        text: "基于Docker的前端项目部署",
-        link: `${modules.notes.link}/devops/deploy-fe`,
-      },
-      {
-        text: "基于Docker的后端项目部署",
-        link: `${modules.notes.link}/devops/deploy-be`,
-      },
-      {
-        text: "基于Compose的前后端项目部署",
-        link: `${modules.notes.link}/devops/deploy-compose`,
-      },
-    ],
+    items: getSidebarItems("notes", "devops", [
+      { text: "基于Docker的前端项目部署", link: "deploy-fe" },
+      { text: "基于Docker的后端项目部署", link: "deploy-be" },
+      { text: "基于Compose的前后端项目部署", link: "deploy-compose" },
+    ]),
   },
 ];
 
-export const projectSidebar = [
-  {
-    text: "项目展示",
-    link: `${modules.projects.link}`,
-  },
-];
-
+/**
+ * 面试题库侧边栏配置
+ */
 export const interviewSidebar = [
   {
     text: "前端",
-    items: [
-      { text: "HTML", link: `${modules.interview.link}/frontend/html` },
-      { text: "CSS", link: `${modules.interview.link}/frontend/css` },
-      {
-        text: "JavaScript",
-        link: `${modules.interview.link}/frontend/javascript`,
-      },
-      {
-        text: "TypeScript",
-        link: `${modules.interview.link}/frontend/typescript`,
-      },
-      { text: "Vue", link: `${modules.interview.link}/frontend/vue` },
-      { text: "React", link: `${modules.interview.link}/frontend/react` },
-      { text: "Webpack", link: `${modules.interview.link}/frontend/webpack` },
-      { text: "Vite", link: `${modules.interview.link}/frontend/vite` },
-      { text: "Http", link: `${modules.interview.link}/frontend/http` },
-      { text: "UniApp", link: `${modules.interview.link}/frontend/uniapp` },
-      { text: "Other", link: `${modules.interview.link}/frontend/other` },
-    ],
+    items: getSidebarItems("interview", "frontend", [
+      { text: "HTML" },
+      { text: "CSS" },
+      { text: "JavaScript" },
+      { text: "TypeScript" },
+      { text: "Vue" },
+      { text: "React" },
+      { text: "Webpack" },
+      { text: "Vite" },
+      { text: "Http" },
+      { text: "UniApp" },
+      { text: "Other" },
+    ]),
   },
   {
     text: "后端",
@@ -108,11 +71,27 @@ export const interviewSidebar = [
   },
 ];
 
+/**
+ * 项目展示侧边栏配置
+ */
+export const projectSidebar = [
+  {
+    text: "项目展示",
+    link: `${modules.projects.link}`,
+  },
+];
+
+/**
+ * 侧边栏配置
+ */
 export const sidebar = {
   [modules.notes.link]: noteSidebar,
   [modules.interview.link]: interviewSidebar,
 };
 
+/**
+ * 顶部导航页签配置
+ */
 export const navs = [
   {
     text: modules.home.text,
@@ -120,11 +99,11 @@ export const navs = [
   },
   {
     text: modules.notes.text,
-    link: noteSidebar[0].items[0].link!,
+    link: noteSidebar[0].items[2].link,
   },
   {
     text: modules.interview.text,
-    link: interviewSidebar[0].items[0].link!,
+    link: interviewSidebar[0].items[2].link,
   },
   {
     text: modules.projects.text,

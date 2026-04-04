@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: 开始探索
-      link: /notes/frontend/html
+      link: /notes/frontend/javascript
 features:
   - title: 💻前端进阶
     details: Vue/React/TypeScript深度解析与最佳实践

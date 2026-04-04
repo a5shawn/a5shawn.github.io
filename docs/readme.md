@@ -16,7 +16,7 @@
 
 ### 后端开发
 
-- **框架**: Deno, Node.js (Express, NestJS)
+- **框架**: Deno (Oak, Hono), Node.js (Express, NestJS)
 - **数据库**: MySQL, Redis, MongoDB
 - **运维**: Nginx, Docker, K8s
 
