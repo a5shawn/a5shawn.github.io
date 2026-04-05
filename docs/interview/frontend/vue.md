@@ -1,6 +1,6 @@
 # Vue
 
-## vue3 和 vue2 的区别
+## Vue3 和 Vue2 的区别
 
 **响应式系统**：`Object.defineProperty` / `Proxy`
 
@@ -10,7 +10,7 @@
 
 **性能优化**：体积减小、渲染性能提升、优化虚拟 DOM 算法、更好的支持 Tree Shaking
 
-## vue3 比 vue2 有什么优势
+## Vue3 比 Vue2 有什么优势
 
 ## Vue 响应式原理
 
@@ -65,3 +65,9 @@
 ## token 过期怎么解决？无感刷新怎么实现？
 
 ## nextTick 是什么任务
+
+## Pinia 和 Vuex 有什么区别
+
+## ref 和 reactive 有什么区别
+
+## 虚拟DOM了解吗

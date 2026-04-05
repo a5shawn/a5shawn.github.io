@@ -1,6 +1,6 @@
 # Vite
 
-## Vite 和 Webpack有什么区别
+## Vite 和 Webpack 有什么区别
 
 ### 启动速度
 
@@ -21,3 +21,5 @@
 
 - Webpack：NodeJS
 - Vite：esbuild（go）（开发），rollup（生产）
+
+## Vite 做过哪些配置和性能优化
