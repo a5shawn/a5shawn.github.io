@@ -48,28 +48,144 @@ function myNew(constructor, ...args) {
 
 ## 闭包
 
-能够访问另一个函数作用域中的变量的函数。
+闭包是一个函数，它记住了其创建时的词法作用域，即使该函数在其作用域之外执行，也能访问其外部函数的变量。
 
-### 形成条件
+### 核心要素
 
-1. 函数嵌套
-2. 内部函数引用外部函数变量
-3. 内部函数被返回或当作回调函数
+- 函数嵌套：内部函数引用了外部函数的变量。
+- 作用域保留：外部函数执行完毕后，内部函数依然持有对外部变量的引用，导致这些变量不会被垃圾回收。
+
+```js
+function outer() {
+  let count = 0;
+  return function inner() {
+    count++;
+    console.log(count);
+  };
+}
+
+const counter = outer(); // outer 执行完毕
+counter(); // 1
+counter(); // 2
+// count 变量依然存活，被 inner 函数“闭包”住了
+```
 
 ### 应用场景
 
-- 模块化开发
+#### 数据私有化
 
-  - ES6 之前使用闭包和立即执行函数实现
+利用闭包创建私有变量，避免全局污染，实现封装。
 
-- 防抖和节流
-- 缓存函数
-- 柯里化
+```js
+function createBankAccount(initialBalance) {
+  let balance = initialBalance; // 私有变量
+
+  return {
+    deposit(amount) {
+      balance += amount;
+      return balance;
+    },
+    withdraw(amount) {
+      if (amount > balance) throw new Error("余额不足");
+      balance -= amount;
+      return balance;
+    },
+    getBalance() {
+      return balance;
+    },
+  };
+}
+
+const account = createBankAccount(100);
+account.deposit(50); // 150
+console.log(account.balance); // undefined，无法直接访问
+```
+
+#### 函数柯里化
+
+柯里化是将多参数函数转换为一系列单参数函数的技术，常用于参数复用和延迟计算。
+
+```js
+// 通用柯里化函数
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    }
+    return (...nextArgs) => curried(...args, ...nextArgs);
+  };
+}
+
+function add(a, b, c) {
+  return a + b + c;
+}
+
+const curriedAdd = curry(add);
+curriedAdd(1)(2)(3); // 6
+curriedAdd(1, 2)(3); // 6
+```
+
+#### 防抖节流
+
+闭包用于保存定时器或状态变量。
+
+```js
+// 防抖：n 秒内只执行最后一次
+function debounce(fn, delay) {
+  let timer = null;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  };
+}
+
+// 节流：n 秒内只执行一次
+function throttle(fn, limit) {
+  let inThrottle = false;
+  return function (...args) {
+    if (!inThrottle) {
+      fn.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
+```
+
+#### 函数记忆
+
+缓存计算结果，提升性能。
+
+```js
+function memoize(fn) {
+  const cache = new Map();
+  return function (...args) {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) {
+      console.log("从缓存读取");
+      return cache.get(key);
+    }
+    const result = fn.apply(this, args);
+    cache.set(key, result);
+    return result;
+  };
+}
+
+const fib = memoize(function fib(n) {
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2);
+});
+
+fib(10); // 计算并缓存
+fib(10); // 直接从缓存读取
+```
 
 ### 注意事项
 
-- 性能影响
-- 内存泄漏
+- 性能开销：创建闭包比简单函数消耗更多资源。
+- 内存泄漏：闭包会阻止变量被回收，过度使用可能导致内存泄漏。
 
 > 闭包的本质就是保存了作用域链的引用。
 
@@ -83,7 +199,6 @@ function myNew(constructor, ...args) {
 2. **任务队列**：异步任务完成后，其回调函数会进入队列中等待。
 
    其中队列分为两种：
-
    - 宏任务队列：`setTimeout`、`setInterval`、I/O 操作、整个脚本的执行
    - 微任务队列：`Promise`、`async/await`、`nextTick`
 
