@@ -66,7 +66,6 @@ const categories: TechCategory[] = [
     icon: "⚡",
     items: [
       { name: "Node.js", detail: "Express / NestJS" },
-      { name: "Deno", detail: "Oak / Hono" },
       { name: "Python", detail: "FastAPI / Django" },
     ],
   },
