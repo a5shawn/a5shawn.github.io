@@ -24,7 +24,6 @@ function App() {
 
   return (
     <>
-      <div className="grid-background" />
       <div className="orb orb-1" />
       <div className="orb orb-2" />
       <div className="orb orb-3" />
