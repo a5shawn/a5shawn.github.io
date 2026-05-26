@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:4173/aboutme/)",
+      "Bash(npx playwright *)",
+      "Bash(node *)",
+      "Bash(pkill -f \"vite preview\")",
+      "Bash(npx vite *)",
+      "Bash(gh auth *)",
+      "Bash(git config *)",
+      "Bash(brew list *)",
+      "Read(//Users/a5shawn/.config/**)",
+      "WebFetch(domain:github.com)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
