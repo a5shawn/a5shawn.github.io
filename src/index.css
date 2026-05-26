@@ -4,7 +4,7 @@
    ============================================ */
 
 /* --- Fonts (Google Fonts) --- */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
 
 /* --- Design Tokens --- */
 :root {
@@ -13,7 +13,7 @@
   --bg-card: rgba(30, 41, 59, 0.75);
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
+  --text-muted: #eee;
   --accent-cyan: #22d3ee;
   --accent-cyan-dim: rgba(34, 211, 238, 0.12);
   --accent-blue: #60a5fa;
@@ -21,8 +21,8 @@
   --accent-pink: #f472b6;
   --border-color: rgba(148, 163, 184, 0.12);
   --border-hover: rgba(148, 163, 184, 0.3);
-  --font-display: 'Plus Jakarta Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
   --nav-height: 72px;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -112,10 +112,19 @@ body {
 }
 
 @keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(60px, -80px) scale(1.08); }
-  50% { transform: translate(-40px, 20px) scale(0.92); }
-  75% { transform: translate(30px, 60px) scale(1.04); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(60px, -80px) scale(1.08);
+  }
+  50% {
+    transform: translate(-40px, 20px) scale(0.92);
+  }
+  75% {
+    transform: translate(30px, 60px) scale(1.04);
+  }
 }
 
 /* --- Navigation --- */
@@ -194,7 +203,8 @@ body {
 
 .nav-tagline {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 1px;
 }
@@ -258,8 +268,15 @@ body {
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; box-shadow: 0 0 6px #22c55e; }
-  50% { opacity: 0.3; box-shadow: 0 0 0 #22c55e; }
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 6px #22c55e;
+  }
+  50% {
+    opacity: 0.3;
+    box-shadow: 0 0 0 #22c55e;
+  }
 }
 
 .sidebar-headline {
@@ -401,10 +418,26 @@ body {
   flex-shrink: 0;
 }
 
-.tech-card-icon.frontend { border-color: rgba(34, 211, 238, 0.25); color: var(--accent-cyan); background: rgba(34, 211, 238, 0.06); }
-.tech-card-icon.backend  { border-color: rgba(167, 139, 250, 0.25); color: var(--accent-purple); background: rgba(167, 139, 250, 0.06); }
-.tech-card-icon.database { border-color: rgba(96, 165, 250, 0.25); color: var(--accent-blue); background: rgba(96, 165, 250, 0.06); }
-.tech-card-icon.devops   { border-color: rgba(244, 114, 182, 0.25); color: var(--accent-pink); background: rgba(244, 114, 182, 0.06); }
+.tech-card-icon.frontend {
+  border-color: rgba(34, 211, 238, 0.25);
+  color: var(--accent-cyan);
+  background: rgba(34, 211, 238, 0.06);
+}
+.tech-card-icon.backend {
+  border-color: rgba(167, 139, 250, 0.25);
+  color: var(--accent-purple);
+  background: rgba(167, 139, 250, 0.06);
+}
+.tech-card-icon.database {
+  border-color: rgba(96, 165, 250, 0.25);
+  color: var(--accent-blue);
+  background: rgba(96, 165, 250, 0.06);
+}
+.tech-card-icon.devops {
+  border-color: rgba(244, 114, 182, 0.25);
+  color: var(--accent-pink);
+  background: rgba(244, 114, 182, 0.06);
+}
 
 .tech-card-name {
   font-size: 17px;
@@ -483,7 +516,9 @@ body {
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+  transition:
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
 }
 
 .fade-in.visible {
@@ -494,7 +529,9 @@ body {
 .fade-in-left {
   opacity: 0;
   transform: translateX(-30px);
-  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+  transition:
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
 }
 
 .fade-in-left.visible {
@@ -505,7 +542,9 @@ body {
 .fade-in-right {
   opacity: 0;
   transform: translateX(30px);
-  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+  transition:
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
 }
 
 .fade-in-right.visible {
